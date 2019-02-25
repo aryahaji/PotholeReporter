@@ -1,3 +1,4 @@
-THE BIG WOP
-YUH
-YEEER
+from PotHoleReporter import application
+
+if __name__ == "__main__":
+    application.run()
