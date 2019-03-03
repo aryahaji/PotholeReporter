@@ -1,0 +1,86 @@
+{% extends template.html %}
+
+{% block content %}
+<div class="content-section">
+    <form method="POST", action="", novalidate>
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Register Now!</legend>
+            <div class="form-group">
+                {{ form.firstName.label(class="form-control-label") }}
+                {% if form.firstName.errors %}
+                    {{ form.firstName(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.firstName.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.firstName(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.lastName.label(class="form-control-label") }}
+                {% if form.lastName.errors %}
+                    {{ form.lastName(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.lastName.erorrs %}
+                            <span>
+                                {{ error }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.lastName(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.passwordConfirm.label(class="form-control-label") }}
+                {% if form.passwordConfirm.errors %}
+                    {{ form.passwordConfirm(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.passwordConfirm.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.passwordConfirm(class="form-control") }}
+                {% endif %}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}
