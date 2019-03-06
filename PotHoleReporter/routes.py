@@ -28,6 +28,8 @@ def login():
             login_user(user)
             nextPage = request.args.get('next')
             return redirect(nextPage) if nextPage else redirect(url_for('home'))
+        else:
+            flash('Login Failed', 'danger')
 
     return render_template('login.html', title='Login', form=form)
 
@@ -49,5 +51,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @application.route('/account')
+@login_required
 def account():
     return render_template('account.html', title='Account')
