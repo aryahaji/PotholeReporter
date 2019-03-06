@@ -17,7 +17,7 @@ def about():
 def contact():
     return render_template('contact.html', title='Contact')
 
-@application.route('login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -31,12 +31,12 @@ def login():
 
     return render_template('login.html', title='Login', form=form)
 
-@application.route('logout')
+@application.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@application.route('register', methods=['GET', 'POST'])
+@application.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
