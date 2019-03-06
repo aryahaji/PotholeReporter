@@ -27,7 +27,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             nextPage = request.args.get('next')
-            return redirect(nextPage) if nextPage else redirect(url_for('home'))
+            return redirect(nextPage) if nextPage else redirect(url_for('account'))
         else:
             flash('Login Failed', 'danger')
 
