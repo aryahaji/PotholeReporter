@@ -27,7 +27,9 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             nextPage = request.args.get('next')
-            return redirect(nextPage) if nextPage else redirect(url_for('home'))
+            return redirect(nextPage) if nextPage else redirect(url_for('account'))
+        else:
+            flash('Login Failed', 'danger')
 
     return render_template('login.html', title='Login', form=form)
 
@@ -49,5 +51,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @application.route('/account')
+@login_required
 def account():
     return render_template('account.html', title='Account')
