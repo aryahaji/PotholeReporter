@@ -48,3 +48,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@application.route('/account')
+def account():
+    return render_template('account.html', title='Account')
