@@ -1,7 +1,12 @@
-from PotHoleReporter import db
+from PotHoleReporter import db, loginManager
 from datetime import datetime
+from flask_login import UserMixin
 
-class User(db.Model):
+@loginManager.user_loader
+def loadUser(user_id):
+    return User.query.get(user_id)
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(30), nullable=False)
