@@ -1,8 +1,9 @@
 from flask import render_template, url_for, redirect, flash, request
-from PotHoleReporter import application, db, bcrypt
-from PotHoleReporter.forms import LoginForm, RegisterForm
+from PotHoleReporter import application, db, bcrypt, mail
+from PotHoleReporter.forms import LoginForm, RegisterForm, ContactForm
 from PotHoleReporter.models import User, Towns, Tickets
 from flask_login import login_user, current_user, login_required, logout_user
+from flask_mail import Message
 
 @application.route('/')
 @application.route('/home')
@@ -13,9 +14,20 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
-@application.route('/contact')
+@application.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', title='Contact')
+    form = ContactForm()
+    if form.validate_on_submit():
+        message = Message(form.subject.data,
+        sender=form.email.data,
+        recipients=['aryahaji.bot@gmail.com'])
+        message.body = """
+        From: %s %s;
+        %s
+        """ % (form.name.data, form.email.data, form.body.data)
+        mail.send(message)
+    flash("Message sent, we will reach out to you shortly!", "success")
+    return render_template('contact.html', title='Contact', form=form)
 
 @application.route('/login', methods=['GET', 'POST'])
 def login():
