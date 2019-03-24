@@ -54,3 +54,63 @@ def register():
 @login_required
 def account():
     return render_template('account.html', title='Account')
+
+@application.route('/Buffalo')
+def Buffalo():
+    return render_template('buffalo.html', title='Buffalo')
+
+@application.route('/Amherst')
+def Amherst():
+    return render_template('amherst.html', title='Amherst')
+
+@application.route('/Clarence')
+def Clarence():
+    return render_template('clarence.html', title='Clarence')
+
+@application.route('/WestSeneca')
+def WestSeneca():
+    return render_template('westseneca.html', title='West Seneca')
+
+@application.route('/Cheektowaga')
+def Cheektowaga():
+    return render_template('cheektowaga.html', title='Cheektowaga')
+
+@application.route('/Tonawanda')
+def Tonawanda():
+    return render_template('tonawanda.html', title='Tonawanda')
+
+@application.route('/Eden')
+def Eden():
+    return render_template('eden.html', title='Eden')
+
+@application.route('/GrandIsland')
+def GrandIsland():
+    return render_template('grandisland.html', title='Grand Island')
+
+@application.route('/Lancaster')
+def Lancaster():
+    return render_template('lancaster.html', title='Lancaster')
+
+@application.route('/Williamsville')
+def Williamsville():
+    return render_template('williamsville.html', title='Williamsville')
+
+@application.route('/Hamburg')
+def Hamburg():
+    return render_template('hamburg.html', title='Hamburg')
+
+@application.route('/OrchardPark')
+def OrchardPark():
+    return render_template('orchardpark.html', title='Orchard Park')
+
+@application.route('/Depew')
+def Depew():
+    return render_template('depew.html', title='Depew')
+
+@application.route('/Kenmore')
+def Kenmore():
+    return render_template('kenmore.html', title='Kenmore')
+
+@application.route('/Angola')
+def Angola():
+    return render_template('angola.html', title='Angola')
