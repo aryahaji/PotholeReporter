@@ -1,3 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
+<head>
+    {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
+    {{mymap.js}}
+</head>
+<h1>Current Buffalo Potholes</h1>
+        {% with map=googlemap_obj("another-map", 37.4419, -122.1419, markers=[(37.4419, -122.1419), (37.4300, -122.1400)]) %}
+            {{map.html}}
+            {{map.js}}
+        {% endwith %}
+        {{mymap.html}}
+
 {% endblock content %}

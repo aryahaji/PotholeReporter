@@ -3,6 +3,8 @@ from PotHoleReporter import application, db, bcrypt
 from PotHoleReporter.forms import LoginForm, RegisterForm
 from PotHoleReporter.models import User, Towns, Tickets
 from flask_login import login_user, current_user, login_required, logout_user
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 
 @application.route('/')
 @application.route('/home')
@@ -57,7 +59,15 @@ def account():
 
 @application.route('/Buffalo')
 def Buffalo():
-    return render_template('buffalo.html', title='Buffalo')
+    # creating a map in the view
+    mymap = Map(
+        style="height:700px;width:700px;margin:0;",
+        identifier="view-side",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[(37.4419, -122.1419)]
+    )
+    return render_template('buffalo.html', mymap="mymap", sndmap="sndmap", title='Buffalo')
 
 @application.route('/Amherst')
 def Amherst():
