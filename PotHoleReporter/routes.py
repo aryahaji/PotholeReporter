@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, flash, request
 from PotHoleReporter import application, db, bcrypt
-from PotHoleReporter.forms import LoginForm, RegisterForm
+from PotHoleReporter.forms import LoginForm, RegisterForm, SubmitTicketForm
 from PotHoleReporter.models import User, Towns, Tickets
 from flask_login import login_user, current_user, login_required, logout_user
 
@@ -50,6 +50,17 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@application.route('/newTicket', methods=['GET', 'POST'])
+def submitTicket():
+    form = SubmitTicketForm()
+    if form.validate_on_submit():
+        ticket = Tickets(town=form.town.data, size=form.size.data, xcord=form.xcord.data, ycord=form.ycord.data)
+        db.session.add(ticket)
+        db.session.commit()
+        flash(f'Ticket has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('ticket.html', title='Submit Ticket', form=form)
+
 @application.route('/account')
 @login_required
 def account():
@@ -57,7 +68,8 @@ def account():
 
 @application.route('/Buffalo')
 def Buffalo():
-    return render_template('buffalo.html', title='Buffalo')
+    ticket = Tickets.query.filter(Tickets.town=={'1'})
+    return render_template('buffalo.html', title='Buffalo', tickets=ticket)
 
 @application.route('/Amherst')
 def Amherst():

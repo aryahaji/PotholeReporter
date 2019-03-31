@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="" novalidate>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Submit New Ticket</legend>
+                <div class="form-group">
+                    {{ form.town.label(class="form-control-label") }}
+                    {% if form.town.errors %}
+                        {{ form.town(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.town.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.town(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.size.label(class="form-control-label") }}
+                    {% if form.size.errors %}
+                        {{ form.size() }}
+                        <div class="invalid-feedback">
+                            {% for error in form.size.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.size() }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.xcord.label(class="form-control-label") }}
+                    {% if form.xcord.errors %}
+                        {{ form.xcord(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.xcord.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.xcord(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.ycord.label(class="form-control-label") }}
+                    {% if form.ycord.errors %}
+                        {{ form.ycord(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ycord.errors %}
+                            <span>
+                                {{ error }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ycord(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
