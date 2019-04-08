@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, flash, request
+from flask import render_template, url_for, redirect, flash, request, jsonify
 from PotHoleReporter import application, db, bcrypt
 from PotHoleReporter.forms import LoginForm, RegisterForm, SubmitTicketForm
 from PotHoleReporter.models import User, Towns, Tickets
@@ -66,9 +66,21 @@ def submitTicket():
 def account():
     return render_template('account.html', title='Account')
 
+@application.route('/locations')
+def locations():
+    locations = Tickets.query.filter_by(town=1).all()
+    all_locs = []
+    for loc in locations:
+        location_details = {
+            "lat": loc.xcord,
+            "lng": loc.ycord,
+            "title": loc.id}
+        all_locs.append(location_details)
+    return jsonify({'locations': all_locs})
+
 @application.route('/Buffalo')
 def Buffalo():
-    ticket = Tickets.query.filter(Tickets.town=={'1'})
+    ticket = Tickets.query.filter_by(town='1').all()
     return render_template('buffalo.html', title='Buffalo', tickets=ticket)
 
 @application.route('/Amherst')
