@@ -6,7 +6,7 @@ var map;
             mapTypeId: 'roadmap'
             });
 
-    var potLocations = 'http://127.0.0.1:5000/locations';
+    var potLocations = 'http://127.0.0.1:5000/locations/' + town;
     var locations = [];
     fetch(potLocations)
     .then(function(response) {
@@ -14,24 +14,37 @@ var map;
     }).then(function(body) {
     var obj = JSON.parse(body);
     var myAdd = {};
-    var addresses = obj.cordinates;
+    
+    var addresses = obj.locations;
     var l = addresses.length;
     for (i = 0; i < l; i++) {
     myAdd = {
         position: {
-            lat: parseFloat(obj.cordinates[i].lat),
-            lng: parseFloat(obj.cordinates[i].lng)
+            lat: parseFloat(obj.locations[i].lat),
+            lng: parseFloat(obj.locations[i].lng)
                     },
-            title: obj.cordinates[i].title,
+            title: obj.locations[i].title,
+            size: obj.locations[i].size,
             };
     locations.push(myAdd);
     }
     locations.forEach(function(feature) {
+            var contentString = "<h5> Ticket #"+ feature.title +"</h5>"+
+                "<p><b>Size:</b> "+ feature.size + "</p>";
+            
+            var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+            });
+
             var marker = new google.maps.Marker({
                 position: feature.position,
                 map: map,
                 title: feature.title
             });
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+              });
+
             });
 
     }).catch(function() {
