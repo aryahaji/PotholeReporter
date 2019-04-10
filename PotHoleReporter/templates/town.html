@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<h1>{{ title }}</h1>
 <div id="map" style="height: 425px"></div>
     <div class="container">
     <ul class="list-group list-group-flush">
@@ -12,6 +13,9 @@
         {% endfor %}
     </ul>
     </div>
+    <script>
+        var town = '{{ town }}';
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
     <script src="{{ url_for('static', filename='maps.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSh5DlWvP9q8WXx4-x6-9XJG17WWd3ET8&callback=initMap"
