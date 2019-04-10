@@ -6,7 +6,7 @@ var map;
             mapTypeId: 'roadmap'
             });
 
-    var potLocations = 'http://127.0.0.1:5000/locations/' + town;
+    var potLocations = 'http://pothole.us-east-1.elasticbeanstalk/locations/' + town;
     var locations = [];
     fetch(potLocations)
     .then(function(response) {
