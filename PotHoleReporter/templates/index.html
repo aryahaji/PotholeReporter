@@ -1,1 +1,86 @@
 {% extends "layout.html" %}
+{% block content %}
+
+<style>
+  .btn{
+     display: inline-block;
+     vertical-align: middle;
+     text-align: center;
+     color: #858383;
+     border-radius: 12px;
+     background-color: white;
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     width: 75%;
+     height: 100px;
+     padding-top:35px;
+   }
+ </style>
+
+  <div class="towns">
+   <div class="container">
+     <div class="row mt-5">
+       <div class="col-md-4 mb-5">
+         <a class="btn" href="{{ url_for('town', town='Buffalo', town_number=1) }}" role="button">Buffalo</a>
+       </div>
+       <div class="col-md-4 mb-5">
+         <a class="btn" href="{{ url_for('town', town='Amherst', town_number=2) }}" role="button">Amherst</a>
+       </div>
+       <div class="col-md-4 mb-5">
+         <a class="btn" href="{{ url_for('town', town='Clarence', town_number=3) }}" role="button">Clarence</a>
+       </div>
+     </div>
+     </div>
+     <div class="container">
+       <div class="row">
+         <div class="col-md-4 mb-5">
+           <a class="btn" href="{{ url_for('town', town='West Seneca', town_number=4) }}" role="button">West Seneca</a>
+         </div>
+         <div class="col-md-4 mb-5">
+           <a class="btn" href="{{ url_for('town', town='Cheektowaga', town_number=5) }}" role="button">Cheektowaga</a>
+         </div>
+         <div class="col-md-4 mb-5">
+           <a class="btn" href="{{ url_for('town', town='Tonawanda', town_number=6) }}" role="button">Tonawanda</a>
+         </div>
+       </div>
+       </div>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-4 mb-5">
+             <a class="btn" href="{{ url_for('town', town='Eden', town_number=7) }}" role="button">Eden</a>
+           </div>
+           <div class="col-md-4 mb-5">
+             <a class="btn" href="{{ url_for('town', town='Grand Island', town_number=8) }}" role="button">Grand Island</a>
+           </div>
+           <div class="col-md-4 mb-5">
+             <a class="btn" href="{{ url_for('town', town='Lancaster', town_number=9) }}" role="button">Lancaster</a>
+           </div>
+         </div>
+         </div>
+         <div class="container">
+           <div class="row">
+             <div class="col-md-4 mb-5">
+               <a class="btn" href="{{ url_for('town', town='Williamsville', town_number=10) }}" role="button">Williamsville</a>
+             </div>
+             <div class="col-md-4 mb-5">
+               <a class="btn" href="{{ url_for('town', town='Hamburg', town_number=11) }}" role="button">Hamburg</a>
+             </div>
+             <div class="col-md-4 mb-5">
+               <a class="btn" href="{{ url_for('town', town='Orchard Park', town_number=12) }}" role="button">Orchard Park</a>
+             </div>
+           </div>
+           </div>
+           <div class="container">
+             <div class="row">
+               <div class="col-md-4 mb-5">
+                 <a class="btn" href="{{ url_for('town', town='Depew', town_number=13) }}" role="button">Depew</a>
+               </div>
+               <div class="col-md-4 mb-5">
+                 <a class="btn" href="{{ url_for('town', town='Kenmore', town_number=14) }}" role="button">Kenmore</a>
+               </div>
+               <div class="col-md-4 mb-5">
+                 <a class="btn" href="{{ url_for('town', town='Angola', town_number=15) }}" role="button">Angola</a>
+               </div>
+             </div>
+             </div>
+   </div>
+   {% endblock content %}
