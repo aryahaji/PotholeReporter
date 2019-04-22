@@ -64,7 +64,34 @@ def submitTicket():
 @application.route('/account')
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    townNumbers = {
+        "Buffalo": 1,
+        "Amherst": 2,
+        "Clarence": 3,
+        "West Seneca": 4,
+        "Cheektowaga": 5,
+        "Tonawanda": 6,
+        "Eden": 7,
+        "Grand Island": 8,
+        "Lancaster": 9,
+        "Williamsville": 10,
+        "Hamburg": 11,
+        "Orchard Park": 12,
+        "Depew": 13,
+        "Kenmore": 14,
+        "Angola": 15
+    }
+    ticket = Tickets.query.filter_by(town=townNumbers.get(current_user.town)).all()
+    return render_template('account.html', title='Account', tickets=ticket)
+
+@application.route('/delete/<ticketId>')
+def delete(ticketId):
+    ticket = Tickets.query.filter_by(id=ticketId).first()
+    db.session.delete(ticket)
+    db.session.commit()
+    flash(f'Ticket ' + ticketId +' has been removed.', 'danger')
+    print("Deleted")
+    return redirect(url_for('account'))
 
 @application.route('/locations/<town_number>')
 def locations(town_number):
