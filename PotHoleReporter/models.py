@@ -31,7 +31,9 @@ class Tickets(db.Model):
     size = db.Column(db.Integer(), nullable=False)
     xcord = db.Column(db.String(), nullable=False)
     ycord = db.Column(db.String(), nullable=False)
+    imgName = db.Column(db.String(300))
+    imgData = db.Column(db.LargeBinary)
     datePosted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"Tickets('{self.town}', '{self.size}', '{self.xcord}', '{self.ycord}', '{self.datePosted}')"
+        return f"Tickets('{self.town}', '{self.size}', '{self.xcord}', '{self.ycord}', '{self.imgName}', '{self.datePosted}')"

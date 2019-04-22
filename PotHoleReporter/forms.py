@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, RadioField
+from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class RegisterForm(FlaskForm):
@@ -23,4 +24,5 @@ class SubmitTicketForm(FlaskForm):
     size = RadioField('Size', choices=[('s', 'Small'), ('m', 'Medium'), ('l', 'Large')], validators=[DataRequired()])
     xcord = StringField('x-Coordinate', validators=[DataRequired()])
     ycord = StringField('y-Coordinate', validators=[DataRequired()])
+    image = FileField('Image', validators=[FileAllowed(['jpg', 'png'], 'Images Only')])
     submit = SubmitField('Create Ticket!')

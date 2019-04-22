@@ -1,8 +1,10 @@
-from flask import render_template, url_for, redirect, flash, request, jsonify
+from flask import render_template, url_for, redirect, flash, request, jsonify, send_file
 from PotHoleReporter import application, db, bcrypt
 from PotHoleReporter.forms import LoginForm, RegisterForm, SubmitTicketForm
 from PotHoleReporter.models import User, Towns, Tickets
 from flask_login import login_user, current_user, login_required, logout_user
+from werkzeug.utils import secure_filename
+from io import BytesIO
 
 @application.route('/')
 @application.route('/home')
@@ -54,7 +56,9 @@ def register():
 def submitTicket():
     form = SubmitTicketForm()
     if form.validate_on_submit():
-        ticket = Tickets(town=form.town.data, size=form.size.data, xcord=form.xcord.data, ycord=form.ycord.data)
+        image = form.image.data
+        imgName = secure_filename(image.filename)
+        ticket = Tickets(town=form.town.data, size=form.size.data, xcord=form.xcord.data, ycord=form.ycord.data, imgName=imgName, imgData=image.read())
         db.session.add(ticket)
         db.session.commit()
         flash(f'Ticket has been created!', 'success')
@@ -83,6 +87,11 @@ def account():
     }
     ticket = Tickets.query.filter_by(town=townNumbers.get(current_user.town)).all()
     return render_template('account.html', title='Account', tickets=ticket)
+
+@application.route('/download/<ticketId>')
+def download(ticketId):
+    image= Tickets.query.filter_by(id=ticketId).first()
+    return send_file(BytesIO(image.imgData), attachment_filename='image.jpg', as_attachment=True)
 
 @application.route('/delete/<ticketId>')
 def delete(ticketId):
