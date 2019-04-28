@@ -39,7 +39,11 @@ var map;
             mapTypeId: 'roadmap'
             });
 
-    var potLocations = 'http://pothole.us-east-1.elasticbeanstalk.com/locations/' + town;
+    //Local
+    var potLocations = 'http://127.0.0.1:5000/locations/' + town;
+    //AWS
+    //var potLocations = 'http://pothole.us-east-1.elasticbeanstalk.com/locations/' + town;
+    
     var locations = [];
     fetch(potLocations)
     .then(function(response) {
