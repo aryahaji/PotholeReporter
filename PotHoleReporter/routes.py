@@ -54,7 +54,7 @@ def register():
 def submitTicket():
     form = SubmitTicketForm()
     if form.validate_on_submit():
-        ticket = Tickets(town=form.town.data, size=form.size.data, xcord=form.xcord.data, ycord=form.ycord.data)
+        ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data)
         db.session.add(ticket)
         db.session.commit()
         flash(f'Ticket has been created!', 'success')
@@ -75,6 +75,7 @@ def locations(town_number):
             "lat": loc.xcord,
             "lng": loc.ycord,
             "title": loc.id,
+            "description": loc.description,
             "size": loc.size}
         all_locs.append(location_details)
     return jsonify({'locations': all_locs})

@@ -21,6 +21,7 @@ class SubmitTicketForm(FlaskForm):
     ('8', 'Grand Island'), ('9', 'Lancaster'), ('10', 'Williamsville'), ('11', 'Hamburg'), ('12', 'Orchard Park'), ('13', 'Depew'), ('14', 'Kenmore'), ('15', 'Angola')]
     town = SelectField('Town', choices=towns , validators=[DataRequired()])
     size = RadioField('Size', choices=[('s', 'Small'), ('m', 'Medium'), ('l', 'Large')], validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
     xcord = StringField('x-Coordinate', validators=[DataRequired()])
     ycord = StringField('y-Coordinate', validators=[DataRequired()])
     submit = SubmitField('Create Ticket!')

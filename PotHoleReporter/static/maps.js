@@ -58,12 +58,15 @@ var map;
                     },
             title: obj.locations[i].title,
             size: obj.locations[i].size,
+            description: obj.locations[i].description,
             };
     locations.push(myAdd);
     }
     locations.forEach(function(feature) {
+            console.log(feature);
             var contentString = "<h5> Ticket #"+ feature.title +"</h5>"+
-                "<p><b>Size:</b> "+ feature.size + "</p>";
+                "<p><b>Size:</b> "+ feature.size + "</p>"+
+                "<p><b>Description:</b> "+ feature.description + "</p>";;
             
             var infowindow = new google.maps.InfoWindow({
                     content: contentString
