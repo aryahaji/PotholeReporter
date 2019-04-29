@@ -1,5 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>{{ current_user.town }}</h1>
+<h1>{{ current_user.town }}</h1>
+<div class="container">
+    <ul class="list-group list-group-flush">
+        {% for ticket in tickets %}
+        <li class="list-group-item">
+        <h5>Ticket #{{ ticket.id }}</h5><a class="btn btn-outline-danger float-right" href="{{ url_for('delete', ticketId=ticket.id) }}" role="button">Delete</a>
+        <p>Size: {{ ticket.size}}</p>
+        <p>Latitude: {{ ticket.xcord}} Longitude: {{ ticket.ycord}}</p>
+        <button class="btn btn-info" id="btn-{{ticket.id}}">Show</button>
+        <div class="pothole-imgs" id="{{ticket.id}}"><img src="{{url_for('static', filename='pothole_imgs/' + ticket.image)}}"></div>
+        <script>
+            $('#btn-{{ticket.id}}').click(function(){
+                $('#{{ticket.id}}').toggle();
+            });
+        </script>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
 {% endblock content %}

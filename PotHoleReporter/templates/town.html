@@ -10,6 +10,13 @@
         <p>Size: {{ ticket.size}}</p>
         <p>Latitude: {{ ticket.xcord}} Longitude: {{ ticket.ycord}}</p>
         <p>Description: {{ticket.description}}</p>
+        <button class="btn btn-info" id="btn-{{ticket.id}}">Show</button>
+        <div class="pothole-imgs" id="{{ticket.id}}"><img src="{{url_for('static', filename='pothole_imgs/' + ticket.image)}}"></div>
+        <script>
+            $('#btn-{{ticket.id}}').click(function(){
+                $('#{{ticket.id}}').toggle();
+            });
+        </script>
         </li>
         {% endfor %}
     </ul>
