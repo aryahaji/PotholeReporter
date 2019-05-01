@@ -6,7 +6,7 @@ from PotHoleReporter.models import User, Towns, Tickets
 from werkzeug.utils import secure_filename
 from flask_login import login_user, current_user, login_required, logout_user
 
-UPLOAD_FOLDER='PotHoleReporter\static\pothole_imgs'
+UPLOAD_FOLDER='PotHoleReporter/static/pothole_imgs'
 
 @application.route('/')
 @application.route('/home')
