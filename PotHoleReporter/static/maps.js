@@ -43,7 +43,7 @@ var map;
     var potLocations = 'http://127.0.0.1:5000/locations/' + town;
     //AWS
     //var potLocations = 'http://pothole.us-east-1.elasticbeanstalk.com/locations/' + town;
-    
+
     var locations = [];
     fetch(potLocations)
     .then(function(response) {
@@ -63,6 +63,7 @@ var map;
             title: obj.locations[i].title,
             size: obj.locations[i].size,
             description: obj.locations[i].description,
+            image: obj.locations[i].image
             };
     locations.push(myAdd);
     }
@@ -70,7 +71,8 @@ var map;
             console.log(feature);
             var contentString = "<h5> Ticket #"+ feature.title +"</h5>"+
                 "<p><b>Size:</b> "+ feature.size + "</p>"+
-                "<p><b>Description:</b> "+ feature.description + "</p>";;
+                "<p><b>Description:</b> "+ feature.description + "</p>" 
+                 + "<img class='img-fluid' src='" + feature.image + "'>" ;
             
             var infowindow = new google.maps.InfoWindow({
                     content: contentString
