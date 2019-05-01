@@ -9,14 +9,35 @@
         <h5>Ticket #{{ ticket.id }}</h5><a class="btn btn-outline-danger float-right" href="{{ url_for('delete', ticketId=ticket.id) }}" role="button">Delete</a>
         <p>Size: {{ ticket.size}}</p>
         <p>Latitude: {{ ticket.xcord}} Longitude: {{ ticket.ycord}}</p>
-        <button class="btn btn-info" id="btn-{{ticket.id}}">Show</button>
-        <div class="pothole-imgs" id="{{ticket.id}}"><img src="{{url_for('static', filename='pothole_imgs/' + ticket.image)}}"></div>
-        <script>
-            $('#btn-{{ticket.id}}').click(function(){
-                $('#{{ticket.id}}').toggle();
-            });
-        </script>
+        <p>Description: {{ticket.description}}</p>
+        {% if ticket.image != 'NULL' %}
+                <button id="btn-{{ticket.id}}" type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#modal-{{ticket.id}}">
+                    Show Image
+                </button>
+            </li>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Ticket #{{ticket.id}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="{{ticket.id}}"><img class="img-fluid" src="{{url_for('static', filename='pothole_imgs/' + ticket.image)}}"></div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% else %}
+                <button class="btn btn-info disabled float-right" id="btn-{{ticket.id}}">Show Image</button>
         </li>
+            {% endif %}
         {% endfor %}
     </ul>
     </div>
