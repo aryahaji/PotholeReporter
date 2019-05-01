@@ -95,8 +95,14 @@ def account():
         "Kenmore": 14,
         "Angola": 15
     }
-    ticket = Tickets.query.filter_by(town=townNumbers.get(current_user.town)).all()
-    return render_template('account.html', title='Account', tickets=ticket)
+    page = request.args.get('page',1,type=int)
+    tickets_per_page = 2
+    ticket = Tickets.query.filter_by(town=townNumbers.get(current_user.town)).paginate(page, tickets_per_page, False)
+    next_url = url_for('account', page=ticket.next_num) \
+        if ticket.has_next else None
+    prev_url = url_for('account', page=ticket.prev_num) \
+        if ticket.has_prev else None
+    return render_template('account.html', title='Account', tickets=ticket.items, next=next_url, prev=prev_url, number_of_pages=ticket.pages)
 
 @application.route('/delete/<ticketId>')
 def delete(ticketId):
@@ -117,11 +123,18 @@ def locations(town_number):
             "lng": loc.ycord,
             "title": loc.id,
             "description": loc.description,
-            "size": loc.size}
+            "size": loc.size,
+            "image": url_for('static', filename='pothole_imgs/'+loc.image)}
         all_locs.append(location_details)
     return jsonify({'locations': all_locs})
 
 @application.route('/town/<town>/<town_number>')
 def town(town, town_number):
-    ticket = Tickets.query.filter_by(town=town_number).all()
-    return render_template('town.html', title=town, tickets=ticket, town=town_number)
+    page = request.args.get('page',1,type=int)
+    tickets_per_page = 5
+    ticket = Tickets.query.filter_by(town=town_number).paginate(page, tickets_per_page, False)
+    next_url = url_for('town', town=town, town_number=town_number, page=ticket.next_num) \
+        if ticket.has_next else None
+    prev_url = url_for('town', town=town, town_number=town_number, page=ticket.prev_num) \
+        if ticket.has_prev else None
+    return render_template('town.html', title=town, tickets=ticket.items, town=town_number, next=next_url, prev=prev_url, number_of_pages=ticket.pages)
