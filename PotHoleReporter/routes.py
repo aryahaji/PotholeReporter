@@ -6,6 +6,8 @@ from PotHoleReporter.models import User, Towns, Tickets
 from werkzeug.utils import secure_filename
 from flask_login import login_user, current_user, login_required, logout_user
 
+UPLOAD_FOLDER='PotHoleReporter\static\pothole_imgs'
+
 @application.route('/')
 @application.route('/home')
 def home():
@@ -57,13 +59,20 @@ def submitTicket():
     form = SubmitTicketForm()
     if form.validate_on_submit():
         img = form.image.data
-        imgName = secure_filename(img.filename)
-        ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image=imgName)
-        img.save(os.path.join(application.config['UPLOAD_FOLDER'], imgName))
-        db.session.add(ticket)
-        db.session.commit()
-        flash(f'Ticket has been created!', 'success')
-        return redirect(url_for('home'))
+        if img is None:
+            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image='NULL')
+            db.session.add(ticket)
+            db.session.commit()
+            flash(f'Ticket has been created!', 'success')
+            return redirect(url_for('home'))
+        else:
+            imgName = secure_filename(img.filename)
+            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image=imgName)
+            img.save(os.path.join(UPLOAD_FOLDER, imgName))
+            db.session.add(ticket)
+            db.session.commit()
+            flash(f'Ticket has been created!', 'success')
+            return redirect(url_for('home'))
     return render_template('ticket.html', title='Submit Ticket', form=form)
 
 @application.route('/account')
