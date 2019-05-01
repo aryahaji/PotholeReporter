@@ -31,6 +31,8 @@ class Tickets(db.Model):
     size = db.Column(db.Integer(), nullable=False)
     xcord = db.Column(db.String(), nullable=False)
     ycord = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String(), nullable=False)
+    image = db.Column(db.String())
     datePosted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):

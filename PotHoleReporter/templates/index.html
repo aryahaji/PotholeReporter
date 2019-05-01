@@ -12,7 +12,7 @@
      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
      width: 75%;
      height: 100px;
-     padding-top:35px;
+     /* padding-top:35px; */
    }
  </style>
 
@@ -20,65 +20,65 @@
    <div class="container">
      <div class="row mt-5">
        <div class="col-md-4 mb-5">
-         <a class="btn" href="{{ url_for('town', town='Buffalo', town_number=1) }}" role="button">Buffalo</a>
+         <a class="btn" href="{{ url_for('town', town='Buffalo', town_number=1) }}" role="button"><img src="{{url_for('static', filename='towns/buffalo.png')}}" class="float-left"><div class="mt-4">Buffalo</div></a>
        </div>
        <div class="col-md-4 mb-5">
-         <a class="btn" href="{{ url_for('town', town='Amherst', town_number=2) }}" role="button">Amherst</a>
+         <a class="btn" href="{{ url_for('town', town='Amherst', town_number=2) }}" role="button"><img src="{{url_for('static', filename='towns/amherst.jpg')}}" class="float-left"><div class="mt-4">Amherst</div></a>
        </div>
        <div class="col-md-4 mb-5">
-         <a class="btn" href="{{ url_for('town', town='Clarence', town_number=3) }}" role="button">Clarence</a>
+         <a class="btn" href="{{ url_for('town', town='Clarence', town_number=3) }}" role="button"><img src="{{url_for('static', filename='towns/clarence.jpg')}}" class="float-left"><div class="mt-4">Clarence</div></a>
        </div>
      </div>
      </div>
      <div class="container">
        <div class="row">
          <div class="col-md-4 mb-5">
-           <a class="btn" href="{{ url_for('town', town='West Seneca', town_number=4) }}" role="button">West Seneca</a>
+           <a class="btn" href="{{ url_for('town', town='West Seneca', town_number=4) }}" role="button"><img src="{{url_for('static', filename='towns/westseneca.gif')}}" class="float-left rounded-circle"><div class="mt-4">West Seneca</div></a>
          </div>
          <div class="col-md-4 mb-5">
-           <a class="btn" href="{{ url_for('town', town='Cheektowaga', town_number=5) }}" role="button">Cheektowaga</a>
+           <a class="btn" href="{{ url_for('town', town='Cheektowaga', town_number=5) }}" role="button"><img src="{{url_for('static', filename='towns/cheektowaga.jpg')}}" class="float-left"><div class="mt-4">Cheektowaga</div></a>
          </div>
          <div class="col-md-4 mb-5">
-           <a class="btn" href="{{ url_for('town', town='Tonawanda', town_number=6) }}" role="button">Tonawanda</a>
+           <a class="btn" href="{{ url_for('town', town='Tonawanda', town_number=6) }}" role="button"><img src="{{url_for('static', filename='towns/tonawanda.png')}}" class="float-left rounded-circle"><div class="mt-4">Tonawanda</div></a>
          </div>
        </div>
        </div>
        <div class="container">
          <div class="row">
            <div class="col-md-4 mb-5">
-             <a class="btn" href="{{ url_for('town', town='Eden', town_number=7) }}" role="button">Eden</a>
+             <a class="btn" href="{{ url_for('town', town='Eden', town_number=7) }}" role="button"><img src="{{url_for('static', filename='towns/eden.png')}}" class="float-left rounded-circle"><div class="mt-4">Eden</div></a>
            </div>
            <div class="col-md-4 mb-5">
-             <a class="btn" href="{{ url_for('town', town='Grand Island', town_number=8) }}" role="button">Grand Island</a>
+             <a class="btn" href="{{ url_for('town', town='Grand Island', town_number=8) }}" role="button"><img src="{{url_for('static', filename='towns/grandisland.jpg')}}" class="float-left rounded-circle"><div class="mt-4">Grand Island</div></a>
            </div>
            <div class="col-md-4 mb-5">
-             <a class="btn" href="{{ url_for('town', town='Lancaster', town_number=9) }}" role="button">Lancaster</a>
+             <a class="btn" href="{{ url_for('town', town='Lancaster', town_number=9) }}" role="button"><img src="{{url_for('static', filename='towns/lancaster.png')}}" class="float-left rounded-circle"><div class="mt-4">Lancaster</div></a>
            </div>
          </div>
          </div>
          <div class="container">
            <div class="row">
              <div class="col-md-4 mb-5">
-               <a class="btn" href="{{ url_for('town', town='Williamsville', town_number=10) }}" role="button">Williamsville</a>
+               <a class="btn" href="{{ url_for('town', town='Williamsville', town_number=10) }}" role="button"><img src="{{url_for('static', filename='towns/williamsville.png')}}" class="float-left rounded-circle"><div class="mt-4">Williamsville</div></a>
              </div>
              <div class="col-md-4 mb-5">
-               <a class="btn" href="{{ url_for('town', town='Hamburg', town_number=11) }}" role="button">Hamburg</a>
+               <a class="btn" href="{{ url_for('town', town='Hamburg', town_number=11) }}" role="button"><img src="{{url_for('static', filename='towns/hamburg.png')}}" class="float-left rounded-circle"><div class="mt-4">Hamburg</div></a>
              </div>
              <div class="col-md-4 mb-5">
-               <a class="btn" href="{{ url_for('town', town='Orchard Park', town_number=12) }}" role="button">Orchard Park</a>
+               <a class="btn" href="{{ url_for('town', town='Orchard Park', town_number=12) }}" role="button"><img src="{{url_for('static', filename='towns/orchardpark.png')}}" class="float-left rounded-circle"><div class="mt-4">Orchard Park</div></a>
              </div>
            </div>
            </div>
            <div class="container">
              <div class="row">
                <div class="col-md-4 mb-5">
-                 <a class="btn" href="{{ url_for('town', town='Depew', town_number=13) }}" role="button">Depew</a>
+                 <a class="btn" href="{{ url_for('town', town='Depew', town_number=13) }}" role="button"><img src="{{url_for('static', filename='towns/depew.jpg')}}" class="float-left rounded-circle"><div class="mt-4">Depew</div></a>
                </div>
                <div class="col-md-4 mb-5">
-                 <a class="btn" href="{{ url_for('town', town='Kenmore', town_number=14) }}" role="button">Kenmore</a>
+                 <a class="btn" href="{{ url_for('town', town='Kenmore', town_number=14) }}" role="button"><img src="{{url_for('static', filename='towns/kenmore.jpg')}}" class="float-left rounded-circle"><div class="mt-4">Kenmore</div></a>
                </div>
                <div class="col-md-4 mb-5">
-                 <a class="btn" href="{{ url_for('town', town='Angola', town_number=15) }}" role="button">Angola</a>
+                 <a class="btn" href="{{ url_for('town', town='Angola', town_number=15) }}" role="button"><img src="{{url_for('static', filename='towns/angola.jpg')}}" class="float-left rounded-circle"><div class="mt-4">Angola</div></a>
                </div>
              </div>
              </div>
