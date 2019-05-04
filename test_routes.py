@@ -1,11 +1,7 @@
 import os
 import unittest
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
- 
-from PotHoleReporter import application as app, db, loginManager
+
+from PotHoleReporter import application as app
  
 class RouteTests(unittest.TestCase):
     def setUp(self):
@@ -103,14 +99,3 @@ class RouteTests(unittest.TestCase):
  
 if __name__ == "__main__":
     unittest.main()
-
-
-    # def register(self, firstName, lastName, town, email, password):
-    #     return self.app.post(
-    #         '/register',
-    #         data=dict(firstName = firstName, lastName=lastName, town=town, email=email, password=password), follow_redirects=True
-    #     )
-
-    # def test_register(self):
-    #     response = self.register('test', 'test', 'Buffalo', 'test@gmail.com', 'test123')
-    #     self.assertEqual(response.status_code, 200)
