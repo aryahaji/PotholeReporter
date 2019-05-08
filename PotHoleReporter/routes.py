@@ -60,14 +60,14 @@ def submitTicket():
     if form.validate_on_submit():
         img = form.image.data
         if img is None:
-            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image='NULL')
+            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image='NULL', status="open")
             db.session.add(ticket)
             db.session.commit()
             flash(f'Ticket has been created!', 'success')
             return redirect(url_for('home'))
         else:
             imgName = secure_filename(img.filename)
-            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image=imgName)
+            ticket = Tickets(town=form.town.data, size=form.size.data, description=form.description.data, xcord=form.xcord.data, ycord=form.ycord.data, image=imgName, status="open")
             img.save(os.path.join(UPLOAD_FOLDER, imgName))
             db.session.add(ticket)
             db.session.commit()
@@ -96,7 +96,7 @@ def account():
         "Angola": 15
     }
     page = request.args.get('page',1,type=int)
-    tickets_per_page = 2
+    tickets_per_page = 5
     ticket = Tickets.query.filter_by(town=townNumbers.get(current_user.town)).paginate(page, tickets_per_page, False)
     next_url = url_for('account', page=ticket.next_num) \
         if ticket.has_next else None
@@ -112,6 +112,20 @@ def delete(ticketId):
     flash(f'Ticket ' + ticketId +' has been removed.', 'danger')
     print("Deleted")
     return redirect(url_for('account'))
+
+@application.route('/status/<ticketId>/<status>')
+def status(ticketId, status):
+    ticket = Tickets.query.filter_by(id=ticketId).first()
+    if(status == "open"):
+        ticket.status = "open"
+    elif(status == "review"):
+        ticket.status = "review"
+    else:
+        ticket.status = "fixing"
+    db.session.commit()
+    flash(f'Ticket ' + ticketId + ' status has been updated', 'success')
+    return redirect(url_for('account'))
+
 
 @application.route('/locations/<town_number>')
 def locations(town_number):
