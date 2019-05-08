@@ -1,0 +1,33 @@
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${Browser}  Chrome
+${URL}  http://127.0.0.1:5000/newTicket
+
+*** Test Cases ***
+Submit_Test
+  Open Browser  ${URL}  ${Browser}
+  Maximize Browser Window
+  Select From List  xpath=//*[@id="town"]  1
+  Click Element  id=size-0
+  Input Text  id=description  descriptiontest
+  Input Text  id=xcord  42.880230
+  Input Text  id=ycord  -78.878738
+  Choose File  id=image  C://Users/Kyle/Pictures/troll.jpg
+  Click Element  id=submit
+  Click Element  xpath=//*[contains(text(), "Buffalo")]
+  Click Element  id=btn-1
+  Wait Until Element Is Visible  id=1  timeout=4
+  Element Should Be Visible  id=1  xpath=//img[contains(@src, "/static/pothole_imgs/troll.jpg")]  
+  Close Browser
+
+Description_test
+  Open Browser  http://127.0.0.1:5000/  ${Browser}
+  Maximize Browser Window
+  Click Element  xpath=//*[contains(text(), "Buffalo")]
+  Page Should Contain  descriptiontest
+  Close Browser
+
+
+*** Keywords ***
