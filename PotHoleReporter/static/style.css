@@ -31,3 +31,18 @@ body {
     border-radius: 3px;
     margin-bottom: 20px;
   }
+
+  .status-open{
+    color:#5cb85c;
+    font-weight: 700;
+  }
+  
+  .status-review{
+    color:#f0ad4e;
+    font-weight: 700;
+  }
+  
+  .status-fixing{
+    color:#d9534f;
+    font-weight: 700;
+  }

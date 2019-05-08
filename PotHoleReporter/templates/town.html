@@ -28,6 +28,22 @@
         {% for ticket in tickets %}
         <li class="list-group-item">
         <h5>Ticket #{{ ticket.id }}</h5>
+            {% if ticket.status == 'open' %}
+                <div class="float-right">
+                    Status:
+                    <span class="status-open">Open</span>
+                </div>
+            {% elif ticket.status == 'review' %}
+                <div class="float-right">
+                    Status:
+                    <span class="status-review">Under Review</span>
+                </div>
+            {% else %}
+                <div class="float-right">
+                    Status:
+                    <span class="status-fixing">Fixing</span>
+                </div>
+        {% endif %}
         <p>Size: {{ ticket.size}}</p>
         <p>Latitude: {{ ticket.xcord}} Longitude: {{ ticket.ycord}}</p>
         <p>Description: {{ticket.description}}</p>

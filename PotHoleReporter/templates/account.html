@@ -27,7 +27,23 @@
     <ul class="list-group list-group-flush">
         {% for ticket in tickets %}
         <li class="list-group-item">
-        <h5>Ticket #{{ ticket.id }}</h5><a class="btn btn-outline-danger float-right" href="{{ url_for('delete', ticketId=ticket.id) }}" role="button">Remove</a>
+        <h5>Ticket #{{ ticket.id }}</h5>
+        <div class="btn-group float-right">
+                {% if ticket.status == 'open' %}
+                    <button type="button" class="btn btn-success dropdown-toggle" id="{{ ticket.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
+                {% elif ticket.status == 'review' %}
+                    <button type="button" class="btn btn-warning dropdown-toggle" id="{{ ticket.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Review</button>
+                {% else %}
+                    <button type="button" class="btn btn-danger dropdown-toggle" id="{{ ticket.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fixing</button>
+                {% endif %}
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ url_for('status', ticketId=ticket.id, status='open') }}">Open</a>
+                <a class="dropdown-item" href="{{ url_for('status', ticketId=ticket.id, status='review') }}">Under Review</a>
+                <a class="dropdown-item" href="{{ url_for('status', ticketId=ticket.id, status='fixing') }}">Fixing</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ url_for('delete', ticketId=ticket.id) }}">Remove</a>
+                </div>
+            </div>
         <p>Size: {{ ticket.size}}</p>
         <p>Latitude: {{ ticket.xcord}} Longitude: {{ ticket.ycord}}</p>
         <p>Description: {{ticket.description}}</p>
